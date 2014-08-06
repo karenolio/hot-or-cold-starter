@@ -10,31 +10,7 @@ $(document).ready(function(){
 	var userChoice;
 	var found = false;
 
-	/*-----------------setting up functions--------------------------------*/
-/* Generate Random Number */
-function generateNumber() {
-
-	var generatedNumber = Math.floor((Math.random()*100)+1);
-	console.log("Generated Random Number = "+ generatedNumber);
-
-	return generatedNumber;
-} /*Math.floor returns x, rounded downwards to the nearest integer*/
-
-/*set focus to the inputbox*/
-function setFocus(){
-	document.getElementById("userGuess").focus();
-}
-
-/*clears the inputbox*/
-function clearText (){
-	$("#userGuess").val('');
-}
-
-/*set guessCount - not sure i understand the code here*/ 
-function setCount (count) {
-	$('#count').text(guessCount);
-}
-
+	
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
@@ -62,7 +38,7 @@ $("form").submit(function(event){
 			if (!guessFlag) { /*means, if guess is wrong do the following*/
 				guessCount++;
 				setCount(guessCount);
-				$("ul#guessList li").append("<li>" + userChoice + "</li>");
+				$("ul#guessList").append("<li>" + userChoice + "</li>");
 				guessFlag = checkTemperature(Math.abs(randomNumber - userChoice));
 			};
 	} else {
@@ -77,16 +53,42 @@ $(".new").click(function(event){
 });
 
 /*newGame function - everything is cleared, everything goes back to zero*/
-/*why can't I use: var newGame = function () instead of function newGame() {*/
+/*why can't I use: var newGame = function () instead of function newGame() { */
 	function newGame(){ 
 		guessFlag = true;
 		guessCount = 0;
+		found=false;
 		$("ul#guessList li").remove();
 		setFeedback("Make your Guess!");
 		setCount(guessCount);
-		randomNumber=generateNumber;
+		randomNumber=generateNumber();
 		setFocus();
-		clearText;
+		clearText();
+	}
+	
+	/* Generate Random Number */
+	function generateNumber() {
+
+		var generatedNumber = Math.floor((Math.random()*100)+1);
+		console.log("Generated Random Number = "+ generatedNumber);
+
+		return generatedNumber;
+} /*Math.floor returns x, rounded downwards to the nearest integer*/
+
+	/*set focus to the inputbox*/
+	function setFocus(){
+		document.getElementById("userGuess").focus();
+	}
+
+/*clears the inputbox*/
+	function clearText() {
+		$("#userGuess").val('');
+	}
+
+
+/*set guessCount - not sure i understand the code here*/ 
+	function setCount(count) {
+		$('#count').text(guessCount);
 	}
 
 
@@ -115,27 +117,28 @@ $(".new").click(function(event){
 
 /*--- DONE: Providing temperature as feedback for user---*/
 	function checkTemperature(guessDifference){
+
 		if (guessDifference == 0) {
-			setFeedback("Yay!");
+			setFeedback("Yay! You guessed it!!");
 			found = true;
 			return false;
 		} else if (guessDifference <= 5) {
-			setFeedback("Getting too hot!");
+			setFeedback("Your Guess is getting too hot!");
 			return true;
 		} else if (guessDifference <= 10){
-			setFeedback("Getting hot!");
+			setFeedback("Your Guess is getting hot!");
 			return true;
 		} else if (guessDifference>=10 && guessDifference <= 20) {
-			setFeedback("Guess is getting Warm!");
+			setFeedback("Your Guess is getting Warm!");
 			return true;
 		} else if (guessDifference>=20 && guessDifference <= 30) {
-			setFeedback("Guess is getting cold!");
+			setFeedback("Your Guess is getting cold!");
 			return true;
 		} else if (guessDifference>=30 && guessDifference <= 40) {
-			setFeedback("Guess is getting very cold!");
+			setFeedback("Your Guess is getting very cold!");
 			return true;
 		} else {
-			setFeedback("Guess is freezing cold!");
+			setFeedback("Your Guess is freezing cold!");
 			return true;
 		}
 	}
