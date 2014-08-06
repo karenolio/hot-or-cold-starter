@@ -102,10 +102,10 @@ $(".new").click(function(event){
 /*--- Check if the User's Guess meets the rules---*/
 	function checkChoice(userChoice) {
 		if (isNaN(userChoice)) {
-			setFeedback("I accept only numbers.");
+			setFeedback("I accept only numbers");
 			return true;
 		} else if (userChoice < 1 || userChoice > 100) {
-			setFeedback("Oops! Your guess has to be a number between 1 and 100!");
+			setFeedback("Your guess has to be a number between 1 and 100!");
 			return true;
 		}else if ($.trim(userChoice) == '') {
 			setFeedback("Enter your guess!");
@@ -119,26 +119,26 @@ $(".new").click(function(event){
 	function checkTemperature(guessDifference){
 
 		if (guessDifference == 0) {
-			setFeedback("Yay! You guessed it!!");
+			setFeedback("Yay! You got it!!");
 			found = true;
 			return false;
 		} else if (guessDifference <= 5) {
-			setFeedback("Your Guess is getting too hot!");
+			setFeedback("getting too hot!");
 			return true;
 		} else if (guessDifference <= 10){
-			setFeedback("Your Guess is getting hot!");
+			setFeedback("getting hot!");
 			return true;
 		} else if (guessDifference>=10 && guessDifference <= 20) {
-			setFeedback("Your Guess is getting Warm!");
+			setFeedback("getting Warm!");
 			return true;
 		} else if (guessDifference>=20 && guessDifference <= 30) {
-			setFeedback("Your Guess is getting cold!");
+			setFeedback("getting cold!");
 			return true;
 		} else if (guessDifference>=30 && guessDifference <= 40) {
-			setFeedback("Your Guess is getting very cold!");
+			setFeedback("getting very cold!");
 			return true;
 		} else {
-			setFeedback("Your Guess is freezing cold!");
+			setFeedback("freezing cold!");
 			return true;
 		}
 	}
