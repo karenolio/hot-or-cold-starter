@@ -10,6 +10,31 @@ $(document).ready(function(){
 	var userChoice;
 	var found = false;
 
+	/*-----------------setting up functions--------------------------------*/
+/* Generate Random Number */
+function generateNumber() {
+
+	var generatedNumber = Math.floor((Math.random()*100)+1);
+	console.log("Generated Random Number = "+ generatedNumber);
+
+	return generatedNumber;
+} /*Math.floor returns x, rounded downwards to the nearest integer*/
+
+/*set focus to the inputbox*/
+function setFocus(){
+	document.getElementById("userGuess").focus();
+}
+
+/*clears the inputbox*/
+function clearText (){
+	$("#userGuess").val('');
+}
+
+/*set guessCount - not sure i understand the code here*/ 
+function setCount (count) {
+	$('#count').text(guessCount);
+}
+
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
@@ -63,30 +88,7 @@ $(".new").click(function(event){
 		setFocus();
 		clearText;
 	}
-/*-----------------setting up functions--------------------------------*/
-/* Generate Random Number */
-function generateNumber() {
 
-	var generatedNumber = Math.floor((Math.random()*100)+1);
-	console.log("Generated Random Number = "+ generatedNumber);
-
-	return generatedNumber;
-} /*Math.floor returns x, rounded downwards to the nearest integer*/
-
-/*set focus to the inputbox*/
-function setfocus(){
-	document.getElementById("userGuess").focus();
-}
-
-/*clears the inputbox*/
-function clearText (){
-	$("#userGuess").val('');
-}
-
-/*set guessCount - not sure i understand the code here*/ 
-function setCount (count) {
-	$('#count').text(guessCount);
-}
 
 /*--- Prompt for User's Guess ---*/
 	function getChoice() {
