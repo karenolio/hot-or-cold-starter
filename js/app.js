@@ -107,7 +107,7 @@ $(".new").click(function(event){
 		} else if (userChoice < 1 || userChoice > 100) {
 			setFeedback("Your guess has to be a number between 1 and 100!");
 			return true;
-		}else if ($.trim(userChoice) == '') {
+		} else if ($.trim(userChoice) == '') {
 			setFeedback("Enter your guess!");
 			return true;
 		} else {
